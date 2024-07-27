@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SOLAR PANEL EFFICIENCY PREDICTION</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  </head>
+  <style>
+    *body {
+      font-family: "Times New Roman", Georgia, Serif;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Playfair Display";
+      letter-spacing: 5px;
+    }
+    #mainpage { 
+      background: rgb(2,0,36);
+      background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 63%);
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url("background.jpg");
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #d1edf1; /* Background color */
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #000000;
+    }
+    form {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: #000000; /* Darkened color for form names */
+    }
+    input[type="text"],
+    input[type="number"],
+    textarea {
+      /* Increased size for text area */
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ffffff;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4caf50;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    .website-name {
+      font-size: 1.5em;
+      text-transform: uppercase;
+      color: #333;
+      position: relative;
+      display: inline-block;
+      animation: rotateY 5s infinite alternate;
+    }
+    @keyframes rotateY {
+      from {
+        transform: rotateY(0deg);
+      }
+      to {
+        transform: rotateY(360deg);
+      }
+    }
+    .navigate {
+      color: #ffffff;
+      text-decoration: none;
+      padding: 10px;
+    }
+    .navigate a:hover {
+      color: #ffcc00;
+    }
+    .navigate:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #ffcc00;
+      transform-origin: bottom left;
+    }
+
+    .main-image-container {
+      position: relative;
+      text-align: center;
+    }
+    .main-image-container img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .quotation {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #0d0202;
+      padding: 20px;
+      border-radius: 5px;
+      width: 60%;
+      max-width: 400px;
+    }
+
+    .quotation p {
+      margin: 0;
+      text-align: center;
+    }
+
+    .main-content {
+      text-align: center;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #cdecfc;
+    }
+
+    .main-content h1 {
+      font-size: 3em;
+      animation: slideIn 1s ease-out;
+    }
+
+    @keyframes slideIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-100px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .image-container {
+      position: relative;
+      width: 600px;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(
+        96,
+        89,
+        89,
+        0.971
+      ); /* Overlay color with transparency */
+      mix-blend-mode: multiply; /* Blend mode for overlay */
+      opacity: 0; /* Initially hidden */
+      transition: opacity 0.3s ease;
+    }
+
+    .image-container:hover .overlay {
+      opacity: 1; /* Show overlay on hover */
+    }
+
+    .content {
+      max-width: 1400px;
+      padding: 20px;
+      background-color: #fff1f1;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      display: inline-flexbox;
+    }
+
+    .para {
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #878080;
+      padding: 20px;
+      border-left: 5px solid #ffcc00;
+      background-color: #e9dddd;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .para:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -10px;
+      width: 5px;
+      height: 100%;
+      background-color: #ffcc00;
+    }
+
+    .para:after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background-color: #ffcc00;
+    }
+
+    /* CSS styles */
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      padding: 12px 0;
+      width: 100%;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    #result {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+  </style>
+  <body id="mainpage">
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top">
+      <div
+        class="w3-bar w3-white w3-padding w3-card"
+        style="letter-spacing: 4px"
+      >
+        <a href="#home" class="w3-bar-item w3-button"
+          ><b
+            ><span class="website-name">|SOLARSKY|</span> SOLAR PANEL EFFICIENCY
+            PREDICTOR</b
+          ></a
+        >
+        <!-- Right-sided navbar links. Hide them on small screens -->
+        <div class="w3-right w3-hide-small">
+          <a href="#about" class="w3-bar-item w3-button">About</a>
+          <a href="#menu" class="w3-bar-item w3-button">Statistics</a>
+          <a href="#panel" class="w3-bar-item w3-button">Panel Detector</a>
+          <a href="#contact" class="w3-bar-item w3-button">Prediction</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header
+      class="main-content w3-display-container w3-content w3-wide"
+      style="max-width: 1600px; min-width: 500px"
+      id="home"
+    >
+      <div class="main-image-container">
+        <img
+        class="w3-image"
+        src="{{ user_image }}"
+        alt="solar"
+        style="width: 100%; height: 100%; "
+    />    
+        <div class="w3-display-center w3-padding-large w3-opacity">
+          <h1 class="w3-xxlarge"></h1>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page content -->
+    <div class="w3-content" style="max-width: 1100px">
+      <!-- About Section -->
+      <div class="content w3-row w3-padding-64" id="about">
+        <div class="w3-col m6 w3-padding-large w3-hide-small">
+          <img
+            src="{{ user_image1 }}"
+            class="image-container w3-round w3-image w3-opacity-min"
+            alt="Table Setting"
+            width="1000px"
+            height="3000px"
+            style="filter: brightness(120%) contrast(120%)"
+          />
+        </div>
+        <div class="overlay"></div>
+
+        <div class="w3-col m6 w3-padding-large">
+          <h1 class="w3-center">
+            <b><u>About Solar Energy</u></b>
+          </h1>
+          <br />
+          <h5 class="w3-center">Making Global Impact</h5>
+          <p class="para w3-large">
+            Solar energy is renewable, abundant, and environmentally friendly.
+            It harnesses sunlight to generate electricity, reducing reliance on
+            fossil fuels and mitigating greenhouse gas emissions. With declining
+            costs and advancing technology, solar power offers a sustainable
+            solution to meet global energy demands while combating climate
+            change.<span class="w3-tag w3-light-grey"></span>
+          </p>
+        </div>
+      </div>
+
+      <hr />
+
+      <!-- Fact Section -->
+      <div class="w3-row w3-padding-64" id="menu">
+        <div class="para w3-col l6 w3-padding-large">
+          <h1 class="w3-center">
+            <b><u>Statistics and Facts</u></b>
+          </h1>
+          <br /><br />
+          <div>
+            <h4>940 GIGAWATTS</h4>
+            <p class="w3-text-grey">GLOBAL SOLAR PHOTOVOLTAIC CAPACITY</p>
+          </div>
+          <div>
+            <h4>75 MILLION BARRELS</h4>
+            <p class="w3-text-grey">SAVED OIL</p>
+          </div>
+          <div>
+            <h4>35 TONS</h4>
+            <p class="w3-text-grey">SAVED C02 EMISSIONS</p>
+          </div>
+          <div>
+            <h4>90% - 97%</h4>
+            <p class="w3-text-grey">
+              SOLAR PANEL MATERIALS CAN BE RECYCLED WHEN THEY BREAK DOWN
+            </p>
+          </div>
+          <div>
+            <h4>15% - 20%</h4>
+            <p class="w3-text-grey">EFFICIENCY OF MOST PANELS TODAY</p>
+          </div>
+        </div>
+
+        <div class="w3-col l6 w3-padding-large">
+          <img
+            src="{{ user_image2 }}"
+            class="w3-round w3-image w3-opacity-min"
+            alt="Menu"
+            style="width: 100%"
+            ,filter:
+            brightness(150%)
+            contrast(150%);
+          /><br /><br />
+          <img
+            src="{{ user_image3 }}"
+            class="w3-round w3-image w3-opacity-min"
+            alt="Menu"
+            style="width: 100%"
+            ,filter:
+            brightness(150%)
+            contrast(150%);
+          />
+        </div>
+      </div>
+
+      <hr />
+
+      <!-- Solar panel detector-->
+
+      <div class="container" id="panel">
+        <h2>Solar Panel Detector</h2>
+
+        <form id="panelCalculatorForm">
+          <label for="region">Select Your Region:</label>
+          <select id="region" name="region">
+            <option value="hilly">Hilly</option>
+            <option value="coastal">Coastal</option>
+            <option value="desert">Desert</option>
+            <option value="urban">Urban/City</option>
+            <option value="rural">Rural/Remote</option>
+          </select>
+
+          <label for="annualUsage">Enter Your Annual Energy Usage (kWh):</label>
+          <input
+            type="number"
+            id="annualUsage"
+            name="annualUsage"
+            placeholder="Enter annual energy usage"
+            required
+          />
+
+          <input type="submit" value="Calculate" />
+        </form>
+
+        <div id="result"></div>
+      </div>
+ <hr>
+      <!-- Prediction Section -->
+      <div class="w3-container w3-padding-64" id="contact">
+        <h1 style="color: #d4cece">
+          <b><u>Prediction</u></b>
+        </h1>
+        <br />
+        <div class="container">
+          <h1>Efficiency Prediction</h1>
+          <form method="POST" action="{{url_for('predict')}}">
+            <label for="cloud"><b>Cloud coverage (in %):</b></label>
+            <input
+              type="number"
+              min="0"
+              max="500"
+              name="a"
+              id="cloud"
+              placeholder="Enter value"
+            /><br />
+
+            <label for="visibility"><b>Visibility (in meters):</b></label>
+            <input
+              type="number"
+              min="0"
+              max="500"
+              name="b"
+              id="visibility"
+              placeholder="Enter value"
+            /><br />
+
+            <label for="temperature"
+              ><b>Temperature (in Degree Celsius):</b></label
+            >
+            <input
+              type="number"
+              min="0"
+              max="100"
+              name="c"
+              id="temperature"
+              placeholder="Enter value"
+            /><br />
+
+            <label for="dew"><b>Dew point (in Degree Celsius):</b></label>
+            <input
+              type="number"
+              min="0"
+              max="200"
+              name="d"
+              id="dew"
+              placeholder="Enter value"
+            /><br />
+
+            <label for="humidity"><b>Relative humidity (in %):</b></label>
+            <input
+              type="number"
+              min="0"
+              max="500"
+              name="e"
+              id="humidity"
+              placeholder="Enter value"
+            /><br />
+
+            <label for="wind"><b>Wind speed( in km/h):</b></label>
+            <input
+              type="number"
+              min="0"
+              max="200"
+              name="f"
+              id="wind"
+              placeholder="Enter value"
+            /><br />
+
+            <label for="max"><b>Max Power (in watts):</b></label>
+            <input
+              type="number"
+              min="0"
+              max="100000"
+              name="g"
+              id="max"
+              placeholder="Enter value"
+            /><br />
+
+            <label for="Year"><b>Usage Duration(in years):</b></label>
+            <input
+              type="number"
+              min="0"
+              max="15"
+              name="h"
+              id="year"
+              placeholder="Enter value"
+            /><br /><br />
+
+            <input type="submit" value="Predict" />
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("panelCalculatorForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the default form submission
+
+          // Get the selected region and annual energy usage
+          var selectedRegion = document.getElementById("region").value;
+          var annualUsage = parseFloat(
+            document.getElementById("annualUsage").value
+          );
+
+          // Display the selected region and annual energy usage
+          document.getElementById("result").innerHTML =
+            "<p><strong>Selected Region:</strong> " + selectedRegion + "</p>";
+
+          // Calculate the number of panels needed
+          var r = annualUsage / 1.6 / 320; // Example formula
+
+          // Display the calculated result
+
+          // Briefing about panel installation based on region (example)
+          var installationBrief = "";
+          switch (selectedRegion) {
+            case "hilly":
+              installationBrief =
+                "For hilly regions, consider using monocrystalline solar panels for their high efficiency and shading tolerance.";
+              break;
+            case "coastal":
+              installationBrief =
+                "In coastal regions, prioritize corrosion-resistant solar panels like monocrystalline panels.";
+              break;
+            case "desert":
+              installationBrief =
+                "Desert regions benefit from high-efficiency panels like monocrystalline or thin-film panels.";
+              break;
+            case "urban":
+              installationBrief =
+                "In urban areas, monocrystalline panels or building-integrated photovoltaics (BIPV) are popular choices.";
+              break;
+            case "rural":
+              installationBrief =
+                "For rural or remote areas, consider polycrystalline panels or off-grid solar systems with battery storage.";
+              break;
+            default:
+              installationBrief = "Please select a region.";
+          }
+
+          // Display the installation briefing
+          document.getElementById("result").innerHTML +=
+            "<p><strong>Panel Installation Briefing:</strong> " +
+            installationBrief +
+            "</p>";
+          document.getElementById("result").innerHTML +=
+            "<p><strong>Annual Energy Usage:</strong> " +
+            annualUsage +
+            " kWh</p>";
+          document.getElementById("result").innerHTML +=
+            "<p><strong>Number of Panels Required:</strong> " +
+            Math.ceil(r) +
+            "</p>"; // Round up to the nearest whole number
+        });
+    </script>
+  </body>
+</html>

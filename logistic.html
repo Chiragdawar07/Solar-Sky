@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solar Panel Calculator</title>
+<style>
+/* CSS styles */
+.container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+}
+
+form {
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+input[type="text"], input[type="number"], select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  padding: 12px 0;
+  width: 100%;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+#result {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Solar Panel Detector</h2>
+  
+  <form id="panelCalculatorForm">
+    <label for="region">Select Your Region:</label>
+    <select id="region" name="region">
+      <option value="hilly">Hilly</option>
+      <option value="coastal">Coastal</option>
+      <option value="desert">Desert</option>
+      <option value="urban">Urban/City</option>
+      <option value="rural">Rural/Remote</option>
+    </select>
+    
+    <label for="annualUsage">Enter Your Annual Energy Usage (kWh):</label>
+    <input type="number" id="annualUsage" name="annualUsage" placeholder="Enter annual energy usage" required>
+    
+    <input type="submit" value="Calculate">
+  </form>
+  
+  <div id="result"></div>
+</div>
+
+<script>
+    document.getElementById("panelCalculatorForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent the default form submission
+      
+      // Get the selected region and annual energy usage
+      var selectedRegion = document.getElementById("region").value;
+      var annualUsage = parseFloat(document.getElementById("annualUsage").value);
+      
+      // Display the selected region and annual energy usage
+      document.getElementById("result").innerHTML = "<p><strong>Selected Region:</strong> " + selectedRegion + "</p>";
+      
+      
+      // Calculate the number of panels needed
+      var r = annualUsage / 1.6 / 320; // Example formula
+      
+      // Display the calculated result
+      
+      // Briefing about panel installation based on region (example)
+      var installationBrief = "";
+      switch(selectedRegion) {
+        case "hilly":
+          installationBrief = "For hilly regions, consider using monocrystalline solar panels for their high efficiency and shading tolerance.";
+          break;
+        case "coastal":
+          installationBrief = "In coastal regions, prioritize corrosion-resistant solar panels like monocrystalline panels.";
+          break;
+        case "desert":
+          installationBrief = "Desert regions benefit from high-efficiency panels like monocrystalline or thin-film panels.";
+          break;
+        case "urban":
+          installationBrief = "In urban areas, monocrystalline panels or building-integrated photovoltaics (BIPV) are popular choices.";
+          break;
+        case "rural":
+          installationBrief = "For rural or remote areas, consider polycrystalline panels or off-grid solar systems with battery storage.";
+          break;
+        default:
+          installationBrief = "Please select a region.";
+      }
+      
+      // Display the installation briefing
+      document.getElementById("result").innerHTML += "<p><strong>Panel Installation Briefing:</strong> " + installationBrief + "</p>";
+      document.getElementById("result").innerHTML += "<p><strong>Annual Energy Usage:</strong> " + annualUsage + " kWh</p>";
+      document.getElementById("result").innerHTML += "<p><strong>Number of Panels Required:</strong> " + Math.ceil(r) + "</p>"; // Round up to the nearest whole number
+      
+      
+    });
+    </script>
+    </body>
+    </html>
+
+
+    background-color: #D9AFD9;
+background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);

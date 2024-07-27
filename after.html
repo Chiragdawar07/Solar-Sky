@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2ab69a; /* Background color */
+            color: #151515;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            background-color: #fffffc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(30, 212, 100, 0.1);
+            box-sizing: border-box;
+        }
+        h1 {
+            text-align: center;
+            color: #c4da1f;
+            margin-bottom: 20px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .result {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .result-label {
+            font-weight: bold;
+            flex: 1;
+        }
+        .result-value {
+            flex: 2;
+        }
+        .service-message {
+            font-size: 18px;
+            color: #33ff58;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><u>Prediction Report</u></h1>
+        
+        <div class="section">
+            <div class="section-title"><u>Solar Power</u></div>
+            <div class="result">
+                <div class="result-label">Generated Solar Power:</div>
+                <div class="result-value">{{ data }} watts</div>
+            </div>
+            <div class="result">
+                <div class="result-label">Maximum Power:</div>
+                <div class="result-value">{{ max }} watts</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title"><u>Efficiency</u></div>
+            <div class="result">
+                <div class="result-label">Ideal Efficiency:</div>
+                <div class="result-value">[{{ Ideal_Efficiency-1 }} - {{ Ideal_Efficiency+1 }}]%</div>
+            </div>
+            <div class="result">
+                <div class="result-label">Current Efficiency:</div>
+                <div class="result-value">[{{ Present_Efficiency-1 }} - {{ Present_Efficiency+1 }}]%</div>
+            </div>
+            {% if (Ideal_Efficiency-1) - (Present_Efficiency-1)> 3%}
+                <div class="service-message">
+                    There is a difference between ideal efficiency and current efficiency.<br>
+                    Contact our service team to book your service now.<br>
+                    Service Team Contact: +1234567890
+                </div>
+                {% else %}
+                <div class="service-message">
+                    Your solar panel is working well.
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="section">
+            <div class="result-label">Thank You For Visiting SolarSky!</div>
+            <div class="result-value">We Wish You A Green Environment</div>
+        </div>
+    </div>
+</body>
+</html>
